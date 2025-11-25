@@ -1,0 +1,39 @@
+# Файлы приложений
+*.apk
+*.aab
+
+# Keystore файлы (очень важно!)
+*.jks
+*.keystore
+
+# Google Services (если будете добавлять Firebase)
+google-services.json
+
+# Файлы профилирования
+*.hprof
+
+*.iml
+
+.gradle
+
+/app/local.properties
+/local.properties
+local.properties
+**/local.properties
+
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+.DS_Store
+
+/build
+
+/captures
+
+.externalNativeBuild
+
+.cxx
