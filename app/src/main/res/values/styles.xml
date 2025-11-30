@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextRegular_16_400">
+        <item name="fontWeight">400</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="mainSearchField">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_marginHorizontal">@dimen/_16dp</item>
+        <item name="android:layout_marginVertical">8dp</item>
+        <item name="android:background">@drawable/light_gray_background</item>
+        <item name="android:textColorHint">@color/dark_gray</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAppearance">@style/TextRegular_16_400</item>
+        <item name="android:paddingEnd">60dp</item>
+    </style>
+</resources>

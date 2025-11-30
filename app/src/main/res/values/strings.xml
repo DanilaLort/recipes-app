@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">recipes-app</string>
+    <string name="poweredBySpoonacular">Powerd by Spoonacular</string>
+    <string name="search">Search</string>
+    <string name="meta_score">Meta-score</string>
+    <string name="popularity">Popularity</string>
+    <string name="healthiness">Healthiness</string>
+    <string name="price">Price</string>
+    <string name="time">Time</string>
 </resources>
