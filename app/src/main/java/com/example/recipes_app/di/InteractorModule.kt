@@ -15,4 +15,5 @@ val interactorModule = module {
     single<RecipesPagingInteractor> {
         RecipesPagingInteractorImpl(get())
     }
+
 }
