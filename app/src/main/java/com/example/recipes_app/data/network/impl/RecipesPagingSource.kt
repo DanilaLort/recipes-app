@@ -1,12 +1,12 @@
-package com.example.recipes_app.data.impl
+package com.example.recipes_app.data.network.impl
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingSource.LoadParams
 import androidx.paging.PagingSource.LoadResult
 import androidx.paging.PagingState
-import com.example.recipes_app.data.dto.RecipeDto
-import com.example.recipes_app.data.network.RecipesApi
+import com.example.recipes_app.data.network.dto.RecipeDto
+import com.example.recipes_app.data.network.api.RecipesApi
 import com.example.recipes_app.domain.models.Recipe
 
 class RecipesPagingSource(

@@ -1,8 +1,11 @@
 package com.example.recipes_app.di
 
-import com.example.recipes_app.data.impl.RetrofitNetworkClient
-import com.example.recipes_app.data.network.NetworkClient
-import com.example.recipes_app.data.network.RecipesApi
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.preferencesDataStore
+import com.example.recipes_app.data.network.api.NetworkClient
+import com.example.recipes_app.data.network.api.RecipesApi
+import com.example.recipes_app.data.network.impl.RetrofitNetworkClient
 import com.example.recipes_app.utils.isConnected
 import com.google.gson.Gson
 import okhttp3.Cache
@@ -11,15 +14,21 @@ import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import okhttp3.Response
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import androidx.datastore.preferences.core.Preferences
 
 val dataModule = module {
 
     single {
         Gson()
+    }
+
+    single<DataStore<Preferences>>(named("app_settings")) {
+        androidContext().preferencesDataStoreStore
     }
 
     single<RecipesApi> {
@@ -113,5 +122,8 @@ val dataModule = module {
     single<NetworkClient> {
         RetrofitNetworkClient(get())
     }
-
 }
+
+private val Context.preferencesDataStoreStore: DataStore<Preferences> by preferencesDataStore(
+    name = "filter_preferences"
+)

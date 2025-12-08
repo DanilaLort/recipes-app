@@ -1,9 +1,9 @@
-package com.example.recipes_app.data.impl
+package com.example.recipes_app.data.network.impl
 
-import com.example.recipes_app.data.dto.RecipeDetailsRequest
-import com.example.recipes_app.data.dto.Response
-import com.example.recipes_app.data.network.NetworkClient
-import com.example.recipes_app.data.network.RecipesApi
+import com.example.recipes_app.data.network.dto.RecipeDetailsRequest
+import com.example.recipes_app.data.network.api.NetworkClient
+import com.example.recipes_app.data.network.api.RecipesApi
+import com.example.recipes_app.data.network.dto.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException

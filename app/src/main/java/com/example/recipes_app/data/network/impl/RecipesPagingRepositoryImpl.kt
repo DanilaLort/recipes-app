@@ -1,10 +1,10 @@
-package com.example.recipes_app.data.impl
+package com.example.recipes_app.data.network.impl
 
 import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.recipes_app.data.network.RecipesApi
+import com.example.recipes_app.data.network.api.RecipesApi
 import com.example.recipes_app.domain.api.RecipesPagingRepository
 import com.example.recipes_app.domain.models.Recipe
 import kotlinx.coroutines.flow.Flow

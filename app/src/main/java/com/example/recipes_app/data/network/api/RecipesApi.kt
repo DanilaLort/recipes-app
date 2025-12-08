@@ -1,8 +1,8 @@
-package com.example.recipes_app.data.network
+package com.example.recipes_app.data.network.api
 
 import com.example.recipes.BuildConfig
-import com.example.recipes_app.data.dto.RecipeDetailsResponse
-import com.example.recipes_app.data.dto.RecipeSearchResponse
+import com.example.recipes_app.data.network.dto.RecipeDetailsResponse
+import com.example.recipes_app.data.network.dto.RecipeSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

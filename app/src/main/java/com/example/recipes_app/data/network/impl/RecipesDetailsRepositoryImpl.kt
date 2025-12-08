@@ -1,10 +1,10 @@
-package com.example.recipes_app.data.impl
+package com.example.recipes_app.data.network.impl
 
 
-import com.example.recipes_app.data.dto.ExtendedIngredientDto
-import com.example.recipes_app.data.dto.RecipeDetailsRequest
-import com.example.recipes_app.data.dto.RecipeDetailsResponse
-import com.example.recipes_app.data.network.NetworkClient
+import com.example.recipes_app.data.network.dto.ExtendedIngredientDto
+import com.example.recipes_app.data.network.dto.RecipeDetailsRequest
+import com.example.recipes_app.data.network.dto.RecipeDetailsResponse
+import com.example.recipes_app.data.network.api.NetworkClient
 import com.example.recipes_app.domain.api.RecipesDetailsRepository
 import com.example.recipes_app.domain.models.ExtendedIngredient
 import com.example.recipes_app.domain.models.RecipeDetails
