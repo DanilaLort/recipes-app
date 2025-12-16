@@ -17,6 +17,14 @@ class FilterSettingsInteractorImpl(
         filterSettingsRepository.updateSort(sortBy)
     }
 
+    override suspend fun updateSortType(sortType: String) {
+        filterSettingsRepository.updateSortType(sortType)
+    }
+
+    override suspend fun updateSortDirection(sortDirection: String) {
+        filterSettingsRepository.updateSortDirection(sortDirection)
+    }
+
     override suspend fun clearAllFilters() {
         filterSettingsRepository.clearAllFilters()
     }

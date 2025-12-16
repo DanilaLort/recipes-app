@@ -17,18 +17,24 @@ import com.example.recipes.databinding.ActivityMainBinding
 import com.example.recipes_app.presentation.main.viewmodel.MainActivityViewModel
 import com.example.recipes_app.presentation.recipes.adapter.RecipesPagingAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.Chip
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.getValue
+import kotlin.toString
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: RecipesPagingAdapter
     private var searchDebounceJob: Job? = null
     private val viewModel: MainActivityViewModel by viewModel()
+    private var sortBy = ""
+    private var sortType = ""
+    private var sortDirection = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +62,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomSheet() {
+
+        binding.sortGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            sortBy = group.findViewById<Chip>(checkedIds.first()).text.toString()
+        }
+
+        binding.categoryGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            sortType = group.findViewById<Chip>(checkedIds.first()).text.toString()
+        }
+
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.filtersBottomSheet).apply {
             state = BottomSheetBehavior.STATE_HIDDEN
         }
@@ -84,6 +99,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.applyButton.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            viewModel.setFilters(
+                sortBy = sortBy,
+                sortType = sortType
+            )
         }
     }
 
@@ -136,7 +155,7 @@ class MainActivity : AppCompatActivity() {
                 searchDebounceJob?.cancel()
                 searchDebounceJob = lifecycleScope.launch {
                     delay(500)
-                    viewModel.searchRecipes(p0?.toString() ?: "")
+                    viewModel.setRecipesQuery(p0?.toString() ?: "")
                 }
             }
         })

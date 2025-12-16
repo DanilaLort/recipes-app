@@ -2,7 +2,10 @@ package com.example.recipes_app.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.recipes_app.data.datastore.api.FilterPreferencesDataSource
+import com.example.recipes_app.data.datastore.impl.FilterPreferencesDataSourceImpl
 import com.example.recipes_app.data.network.api.NetworkClient
 import com.example.recipes_app.data.network.api.RecipesApi
 import com.example.recipes_app.data.network.impl.RetrofitNetworkClient
@@ -19,7 +22,6 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import androidx.datastore.preferences.core.Preferences
 
 val dataModule = module {
 
@@ -27,8 +29,12 @@ val dataModule = module {
         Gson()
     }
 
-    single<DataStore<Preferences>>(named("app_settings")) {
+    single<DataStore<Preferences>> {
         androidContext().preferencesDataStoreStore
+    }
+
+    single<FilterPreferencesDataSource> {
+        FilterPreferencesDataSourceImpl(get())
     }
 
     single<RecipesApi> {

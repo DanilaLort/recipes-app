@@ -7,6 +7,8 @@ interface FilterSettingsRepository {
     val filterSettings: Flow<FilterSettings>
     suspend fun updateSearchQuery(query: String)
     suspend fun updateSort(sortBy: String)
+    suspend fun updateSortType(sortType: String)
+    suspend fun updateSortDirection(sortDirection: String)
     suspend fun clearAllFilters()
     suspend fun getCurrentSettings(): FilterSettings
 }
