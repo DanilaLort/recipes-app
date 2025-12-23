@@ -7,4 +7,5 @@
     <string name="healthiness">Healthiness</string>
     <string name="price">Price</string>
     <string name="time">Time</string>
+    <string name="sort_direction_button">sort_direction_button</string>
 </resources>

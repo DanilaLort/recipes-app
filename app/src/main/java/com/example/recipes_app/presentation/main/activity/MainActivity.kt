@@ -7,12 +7,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.recipes.R
 import com.example.recipes.databinding.ActivityMainBinding
 import com.example.recipes_app.presentation.main.viewmodel.MainActivityViewModel
 import com.example.recipes_app.presentation.recipes.adapter.RecipesPagingAdapter
@@ -24,7 +26,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.getValue
-import kotlin.toString
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModel()
     private var sortBy = ""
     private var sortType = ""
-    private var sortDirection = ""
+    private var isDescending = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,11 +45,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerView()
+
         setupSearch()
+
         setupObservers()
 
-
         setupBottomSheet()
+
+        setupSortDirectionButton()
 
         binding.toolBar.setOnClickListener {
             val intent = Intent(
@@ -58,6 +62,17 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             startActivity(intent)
+        }
+    }
+
+    private fun setupSortDirectionButton() {
+        binding.sortDirectionButton.setOnClickListener {
+            isDescending = !isDescending
+
+            val rotation = AnimationUtils.loadAnimation(this, R.anim.rotate_180)
+            binding.sortDirectionButton.startAnimation(rotation)
+
+            binding.sortDirectionButton.isPressed = !isDescending
         }
     }
 
@@ -101,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             viewModel.setFilters(
                 sortBy = sortBy,
-                sortType = sortType
+                sortType = sortType,
             )
         }
     }
